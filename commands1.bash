@@ -75,6 +75,11 @@ $ alt + .
 $ less +F /var/log/messages
 $ tail -50   -f /var/log/messages
 
+//Disk
+$lsblk
+# list blocks
+$fdisk -l
+# list disks
 
 // manipulate
 $ touch "new file"
@@ -103,7 +108,9 @@ $ ctrl + shift + f
 $ grep
 # serach for text in multiple Files can be pipelined with other commands
 $ find 
-# search for Files
+# search for Files (subtree)
+$ locate
+# search in locate datenbank
 $ more
 # show file contents from top then scroll down can be pipelined
 # exp with ps (ps -ef | more)
