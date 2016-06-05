@@ -1,2 +1,2 @@
 # Linuxikon
--This Repo contains helfull explained commands for linux beginners (Baisly Ubuntu & Fedora)
+-This Repo contains helful explained commands for linux beginners (Baisly Ubuntu & Fedora)
