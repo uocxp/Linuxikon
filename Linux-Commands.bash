@@ -1,5 +1,6 @@
 
 // SSH
+-------
 - install openssh-server
 - start service
 - nano authorized_keys 
@@ -13,7 +14,9 @@ $ grep <name> authorized_keys > name.pub
 # exports  the lines with <name> into <name.pub>   
 }
 -  chmod 600 ~/.ssh/authorized_keys   
-  
+/ SSH agent
+- $ ssh-agent bash
+- $ ssh-add ~/.ssh/id_rsa  
   
 
 echo $BASH_VERSION 
@@ -62,6 +65,7 @@ $ sudo rm -r /home/username
 
 
 // Navigation
+-------------
 
 $ ctrl+shift+t
 # open new Tab in Terminal
@@ -100,6 +104,7 @@ $ top
 # displays your currently active processes
 
 // Network
+----------
 # edit
 $ ip -a
 # show all ip address associated on on all network interfaces
@@ -167,6 +172,7 @@ $ traceroute <ip or dns name>
 
 
 // System Info
+--------------
 $ who
 # To see who is currently logged in to the Linux server,
 $ last
@@ -177,6 +183,7 @@ $ lastlog
 # To see when did someone last log in to the system
 
 // logging
+----------
 $ less +F /var/log/messages
 $ tail -50 -f /var/log/messages
 #mit dem Schalter -f (follow) wird die Ausgabe so lange kontinuierlich 
@@ -192,7 +199,9 @@ $cat /etc/rsyslog.conf
 # different parts of a Linux system and routing the message to an
 # appropriate log file in the /var/log directory. It can also forward
 # log messages to another Linux server.
+
 //Disk
+------
 $ lsblk
 # list blocks
 $ fdisk -l
@@ -201,6 +210,7 @@ $ df
 # shows disk usage 
 
 // manipulate
+-------------
 $ touch "new file"
 # creates empty file
 
@@ -222,6 +232,7 @@ $ mv /home/user/<oldname> /home/user/<newname>
 # rename directory
 
 // search & display
+-------------------
 $ ctrl + shift + f
 # search function in Terminal Ubuntu
 $ grep
@@ -245,6 +256,7 @@ $ ls -i
 # shows info. expl: inode hardlink  
 
 // Packages
+-----------
 $ nano /etc/apt/sources.list
 # edit packetquellen
 $ apt-get  update 
@@ -274,6 +286,7 @@ $ chmod +x "file name"
 
 
 // Link
+-------
 $ ln "file" "shortcut "
 # create a hardlink (shortcut like Windows)
 # same inode
@@ -286,12 +299,16 @@ $ ln -s "folder" "shortcut folder"
 
 
 // Permissions
+--------------
 $ chmod 					
 # edit file permissions. to show Permissions ls -l
 $ chmod +x "file name"		
 # sudo for file then can one ./"filename" without Problems
+/ Interactive chmod
+- http://www.user-archiv.de/chmod.html
 
 // Others
+---------
 $ shutdown -h +10			
 # shutdown in 10 min
 $ service --status-all		
@@ -338,6 +355,11 @@ GATEWAY=<192.168.0.1>
 $ hostnamectl set-hostname --static <hostname>		# set hostname
 
 ----------- Bash -------------
+export DIRPATH = /home/dir
+echo "$DIRPATH"
+set 
+# shows all enviroment variables
+
 $ echo "128.83.155.1 pluto.cns.utexas.edu" >> /etc/hosts		
 # fast way to write into file
 $ cmd > file 													
