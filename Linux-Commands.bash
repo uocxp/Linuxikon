@@ -260,6 +260,7 @@ $ dpkg -l
 $ ls -i
 # shows info. expl: inode hardlink  
 
+
 // Packages
 -----------
 $ nano /etc/apt/sources.list
