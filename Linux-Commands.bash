@@ -1,4 +1,5 @@
 
+--------- Debian -------------
 // SSH
 -------
 - install openssh-server
@@ -28,6 +29,8 @@ $ echo $SHELL
 $ lsb_release -a
 # check ubuntu distribution version
 
+$ cat /etc/os-release
+# Operating System Info
 
 
 $ pkill <pid>
@@ -224,6 +227,8 @@ $ rm "new file"
 # remove "new file"
 $ mkdir "new folder"
 # create "new folder"
+$ mkdir -p myProject/{src,doc,tools,db}
+# create Parent directory with multiple subdirectories
 $ rmdir "new folder"
 # remove "new folder"
 $ rm -rf "unempty directory"
@@ -351,11 +356,16 @@ ONBOOT="yes"
 IPADDR=<192.168.0.200>
 NETMASK=<255.255.255.0>
 GATEWAY=<192.168.0.1>
+# to get GATEWAY : ip route show | grep via
 }
 $ hostnamectl set-hostname --static <hostname>		# set hostname
 
 ----------- Bash -------------
+$ mkdir folder;cd folder
+# ; 
 export DIRPATH = /home/dir
+echo -e  "hello\nthis is a test"
+# mit -e argument "\n" werden erkannt
 echo "$DIRPATH"
 set 
 # shows all enviroment variables
