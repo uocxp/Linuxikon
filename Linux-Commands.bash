@@ -7,6 +7,11 @@
 - nano authorized_keys 
 - paste ur public key there !! if pbK was with 
   Putty generated add 'ssh-rsa' before the key
+
+# new fresh debian server  
+  - if .ssh folder not found -> ssh into a client
+  - fastest way to copy public key is using mc -> Right -> Shell link 
+  - create first a user on the other server since remoting using root-user ist not possible  
 {
 $ ssh-copy-id user@host 
 # adds your ssh key to host for user to enable a keyed or passwordless login
@@ -37,16 +42,16 @@ $ pkill <pid>
 # kill a process
 $ .bashrc alias ll, alias rm freigeben
 # ll for ls -l, rm -i for rm (rm -i : remove with bestätigung)
-$ rm *a 
+$ rm a* 
 # remove all files that begin with a
 $ /bin/rm 
-# remove without bestätigung
+# remove without confirmation
 $ . ~/.bashrc um bashrc zu relaoden
 
 // User Management
 $ whoami
 # tells which user 
-$ cd /etc/sudoers
+$ nano /etc/sudoers
 # sudoers file
 - 
 $ sudo adduser "user"
@@ -60,7 +65,7 @@ root	ALL=(ALL) 	ALL
 "new user"	ALL=(ALL) 	ALL 
 }
 $ cd /etc/hostname
-# change hostname bzw user@<hostname>$
+# change hostname bzw user@<hostname>$ ;Domainname in windows
 $ sudo userdel username
 # To remove/delete a user (it's doesn't reomove user dir)
 $ sudo rm -r /home/username
@@ -81,7 +86,7 @@ $ cd -
 $ ls -a 
 # lists all files, including hidden files
 $ ls a*
-# list all files that stats with a*
+# list all files that start with a*
 $ls a?3
 # ? means any character
 $ cp "path/To/My File" /media/Dir/. 
@@ -273,6 +278,7 @@ $ apt-get upgrade --dry-run
 # shows what will be updated without really updating
 # works too for apt-get install
 $ apt-get install unattended-upgrades
+$ sudo unattended-upgrades -d
 # installs security updates only 	
 $ apt-get dist-upgrade
 # upgrades linux distribution version
@@ -315,6 +321,8 @@ $ chmod +x "file name"
 
 // Others
 ---------
+$ shutdown now
+# shutdown instantly
 $ shutdown -h +10			
 # shutdown in 10 min
 $ service --status-all		
@@ -379,3 +387,28 @@ $ cmd >> file
 # Append (no overwrite) stdout of cmd to a File.
 $ cmd 2> file 													
 # Redirect the standard error (stderr) of cmd to a File. 2 is the default fd for stderr.
+
+--------------RegEx---------------------------------
+$ grep "foo" file.txt
+# searches for foo in file.txt
+$ grep "fo." file.txt
+# . means any character
+$ grep ^"foo" file.txt
+# searches for lines that start with foo
+$ grep $"foo" file.txt
+# searches for lines that end with foo
+$ grep ^"[ab]" file.txt
+# searches for lines that start with a or b
+$ grep ^"[ab][cd]" file.txt
+# searches for lines that start with ac,ad,bc or bd
+$ grep "[0-9]" file.txt
+# searches for lines that contain any number from range 0 to 9
+$ grep "[0-9][a-zA-Z]" file.txt
+# searches for lines that contain any number from range 0 to 9 with a letter from a-z and A-Z
+$ grep "[\]]" file.txt
+# searches for lines that contain ']' character
+$ grep -i "foo" file.txt
+# ignor case foo or Foo
+
+
+
