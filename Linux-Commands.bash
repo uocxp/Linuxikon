@@ -193,7 +193,7 @@ $ lastlog
 // logging
 ----------
 $ less +F /var/log/messages
-$ tail -50 -f /var/log/messages
+$ tail --lines=50 -f /var/log/messages
 #mit dem Schalter -f (follow) wird die Ausgabe so lange kontinuierlich 
 #aktualisiert.Diese Funktion macht tail als Live-Monitor für sich laufend 
 #ändernde Dateien (z. B. Logs) geeignet.
@@ -371,7 +371,11 @@ $ hostnamectl set-hostname --static <hostname>		# set hostname
 
 ----------- Bash -------------
 $ mkdir folder;cd folder
-# ; 
+# ;
+$ cmd 1 || cmd2 
+# causes the next command to run if the previous command failed 
+$ set -e
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
 export DIRPATH = /home/dir
 echo -e  "hello\nthis is a test"
 # mit -e argument "\n" werden erkannt
@@ -387,7 +391,9 @@ $ cmd >> file
 # Append (no overwrite) stdout of cmd to a File.
 $ cmd 2> file 													
 # Redirect the standard error (stderr) of cmd to a File. 2 is the default fd for stderr.
-
+--------------sed-----------------------------------
+sed 's/horse/dog/g' /dir/file
+# replace horse with dof
 --------------RegEx---------------------------------
 $ grep "foo" file.txt
 # searches for foo in file.txt
