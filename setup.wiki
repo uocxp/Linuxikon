@@ -1,0 +1,91 @@
+Confpack 1
+----------
+Removes exim*, apache* cron* sendmail* rsyslog*
+Updates motd
+Sets swappiness
+Configures apt sources
+Configures apt for no-recommends
+Upgrades system
+
+Installs packages
+base
+	less
+	htop			// an interactive process viewer for Unix 
+	powertop		// ein Tool zum Aufspüren von Stromverschwendern unter Linux
+	lsof				// list of opened files
+	screen		
+	dnsutils
+	sudo	
+	localepurge		// localepurge ist ein Debian-Tool, um automatisch überflüssige locale-Dateien nach Abschluss jeder Paketinstallation mit einem automatischen Aufruf durch apt-get zu löschen
+	ca-certificates
+	mtr-tiny			// Linux Netzwerk Analyse
+	lynx				// Webbrowser für die Kommandozeile
+	lighttpd			// webserver
+	sqlite3
+	php5-cgi
+	php5-sqlite
+	openssh-server
+	openvpn
+	vnstat			// ist ein einfaches Programm, das den Datenverkehr (Volumen) protokolliert und das Ergebnis in einem Terminalfenster anzeig
+	vim
+	ntfs-3g
+	rcconf
+	tmux			// tmux {en} ist ein Terminal-Multiplexer für die Kommandozeile, , vergleichbar mit screen oder Terminator
+	zip
+	unzip
+	zsh				// cooles Terminal
+	ntpdate			// Uhrzeit synchronisieren
+	curl
+
+laptop
+	acpi-support
+
+dev
+	tcc				// Tiny C Compiler
+	build-essential
+	subversion
+	git
+	valgrind			// zum Debuggen, Profilen und zur dynamischen Fehleranalyse von Linux-Programmen.
+	splint			// Splint is a tool for statically checking C programs for security vulnerabilities
+	strace			// strace ist eine sehr mächtige Möglichkeit, Prozesse in Ihrem Ablauf zu verfolgen
+
+tools
+	wicd-curses		// Netzwerkmanager 
+	weechat
+	weechat-plugins
+
+audio
+	alsa-base
+	alsa-utils
+	mplayer
+
+xorg
+	xorg			// xserver
+	ratpoison		//  manage applications without a mouse
+	i3wm			// windows manager
+	jwm				// ein leichtgewichtiger Fenstermanager für das X Window
+	rxvt-unicode		// customizable terminal emulator forked from rxvt. Features of rxvt-unicode include international language support through Unicode
+	xclip			// manage clipboard
+	menu			// Erzeugt Programm-Menüs für alle Anwendungen, die menu unterstützen 
+	9menu			// Erzeugt Menüs für X aus einer Shell
+	xfonts-terminus	// 	Schriften fester Breite für schnelles Lesen 
+	scite				// GTK(GIMP Toolkit)-basierter Editor für Programmierer 
+	xli				// Kommandozeilenwerkzeug für die Bildanzeige unter X11
+	xfe				// Leichtgewichtige X11-Dateiverwaltung 
+	zathura			// PDF-Betrachter mit minimalistischer Oberfläche
+	keepassx
+	chromiumsx
+	netsurf
+	xsel				// Kommandozeilenwerkzeug für den Zugriff auf Zwischenablage und Auswahlpuffer von X 
+	scrot			//  take a screenshot from the command line 
+
+Installs config files
+	.jwmrc
+	.ratpoisonrc
+	.vimrc
+	.xinitrc
+	.xresources
+	.zshrc
+	.ssh/config
+Configures login shells
+Configure service runlevels
