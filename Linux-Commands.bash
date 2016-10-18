@@ -4,20 +4,26 @@
 -------
 - install openssh-server
 - start service
+- ssh-keygen -t rsa
 - nano authorized_keys 
 - paste ur public key there !! if pbK was with 
   Putty generated add 'ssh-rsa' before the key
 
+- ssh <server> -v
+# verbose output
+# je mehr v man eingibt desto mehr info rauskommt
+
 # new fresh debian server  
+  {
   - if .ssh folder not found -> ssh into a client
   - fastest way to copy public key is using mc -> Right -> Shell link 
   - create first a user on the other server since remoting using root-user ist not possible  
-{
-$ ssh-copy-id user@host 
+or
+$ ssh-copy-id -i <id_rsa.pub> user@host 
+# public key must bi located in "id_rsa.pub"
 # adds your ssh key to host for user to enable a keyed or passwordless login
-||
-$ grep <name> authorized_keys > name.pub			
-# exports  the lines with <name> into <name.pub>   
+$ grep <name> authorized_keys > id_rsa.pub			
+# exports  the lines with <name> into <id_rsa.pub>  
 }
 -  chmod 600 ~/.ssh/authorized_keys   
 / SSH agent
@@ -46,7 +52,7 @@ $ rm a*
 # remove all files that begin with a
 $ /bin/rm 
 # remove without confirmation
-$ . ~/.bashrc um bashrc zu relaoden
+$ . ~/.bashrc um bashrc zu reloaden
 
 // User Management
 $ whoami
@@ -71,6 +77,8 @@ $ sudo userdel username
 $ sudo rm -r /home/username
 # delete the home directory for the deleted user account
 
+$ getent passwd
+# show  users 
 
 // Navigation
 -------------
@@ -83,6 +91,8 @@ $ cd ..
 # go back
 $ cd -
 # return to the last directory
+$ cd /
+# change directory to top level directory
 $ ls -a 
 # lists all files, including hidden files
 $ ls a*
@@ -106,10 +116,18 @@ $ ctrl + y
 # undo delete 
 $ alt + .
 # paste last word
-$ ps -u yourusername 
-# lists your processes
+$ ps -u <user> 
+# lists your processes on terminal
+$ ps -uax
+# list processes of all users beneath root
+$ <cmd>&
+# send cmd to background
+$ kill -9 <pid>
+# kill process for more see man kill
 $ top 
 # displays your currently active processes
+$pstree
+# tree of active processes
 
 // Network
 ----------
@@ -142,10 +160,9 @@ iface eth0 inet dhcp
 auto eth0
 iface eth0 inet static
   address 192.168.1.14
-  gateway 192.168.1.1
+  gateway 192.168.0.1
   netmask 255.255.255.0
-  network 192.168.1.0
-  broadcast 192.168.1.255
+  dns-nameservers 192.168.0.1
 
 For these settings to take effect you need to restart your networking services.
 
@@ -154,7 +171,7 @@ sudo /etc/init.d/networking restart
 -- Setting up DNS
 $ sudo vi /etc/resolv.conf
 {
-search example.com
+search example.com					// what does search mainly do ?
 domain example.com
 nameserver <dns server ip>
 }
@@ -165,20 +182,27 @@ $ dig <domain>
 # gets DNS information for domain
 $ dig -x <host>            
 # reverses lookup host
+$ nslookup <domain>
+# gets DNS information for domain + used dns server to for lookup
 $ wget <file> 
 # downloads file
 $ ss
 #
 $ netstat
-# 
+#  
 $ tcpdump
 #
 $ hostname
 #
 $ traceroute <ip or dns name>
 #
+$ arp 
 
-
+! sometime in a fresh installed system the default eth0 can be renames in another name
+ - ifconfig -a # list all the adapter
+ - look which on is the ethernet one and config the interface file with correspondingly
+ !
+ 
 // System Info
 --------------
 $ who
@@ -189,12 +213,13 @@ $ last reboot
 # when was the system last rebooted
 $ lastlog 
 # To see when did someone last log in to the system
-
+$ lspci 
+# lists info about PCI  devices
 // logging
 ----------
 $ less +F /var/log/messages
-$ tail --lines=50 -f /var/log/messages
-#mit dem Schalter -f (follow) wird die Ausgabe so lange kontinuierlich 
+$ tail --lines=50 -F /var/log/messages
+#mit dem Schalter -F (follow) wird die Ausgabe so lange kontinuierlich 
 #aktualisiert.Diese Funktion macht tail als Live-Monitor für sich laufend 
 #ändernde Dateien (z. B. Logs) geeignet.
 --Default Log File Location--
@@ -227,7 +252,8 @@ $ service --status-all
 $ df -h
 # free disk space
 
-
+$ > <filename>
+# clear file contents
 $ rm "new file"
 # remove "new file"
 $ mkdir "new folder"
@@ -240,6 +266,10 @@ $ rm -rf "unempty directory"
 # remove unempty directory
 $ mv /home/user/<oldname> /home/user/<newname>
 # rename directory
+$ :> foo.txt
+# Empty the contents of a file
+
+
 
 // search & display
 -------------------
@@ -318,7 +348,8 @@ $ chmod +x "file name"
 # sudo for file then can one ./"filename" without Problems
 / Interactive chmod
 - http://www.user-archiv.de/chmod.html
-
+$chown
+# edit file owner
 // Others
 ---------
 $ shutdown now
@@ -370,8 +401,10 @@ GATEWAY=<192.168.0.1>
 $ hostnamectl set-hostname --static <hostname>		# set hostname
 
 ----------- Bash -------------
+$ cmd1 && cmd2
+# run next cmd2 iff cmd1 execution ends up successfully
 $ mkdir folder;cd folder
-# ;
+# ; run next command regardless of whether or not the first one succeeds.
 $ cmd 1 || cmd2 
 # causes the next command to run if the previous command failed 
 $ set -e
@@ -382,9 +415,11 @@ echo -e  "hello\nthis is a test"
 echo "$DIRPATH"
 set 
 # shows all enviroment variables
+$ $(cat file) == $(< file)
 
 $ echo "128.83.155.1 pluto.cns.utexas.edu" >> /etc/hosts		
 # fast way to write into file
+-- stdin 0 stdout 1 stderr 2
 $ cmd > file 													
 # Redirect the standard output (stdout) of cmd to a File.
 $ cmd >> file													
@@ -394,6 +429,7 @@ $ cmd 2> file
 --------------sed-----------------------------------
 sed 's/horse/dog/g' /dir/file
 # replace horse with dof
+# muss not be /
 --------------RegEx---------------------------------
 $ grep "foo" file.txt
 # searches for foo in file.txt
