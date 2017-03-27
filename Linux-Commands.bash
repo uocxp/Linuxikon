@@ -31,7 +31,7 @@ $ grep <name> authorized_keys > id_rsa.pub
 - $ ssh-add ~/.ssh/id_rsa  
   
 
-echo $BASH_VERSION 
+$ echo $BASH_VERSION 
 # displays bash version
 
 $ echo $SHELL 
@@ -131,7 +131,6 @@ $pstree
 
 // Network
 ----------
-# edit
 $ ip -a
 # show all ip address associated on on all network interfaces
 $ sudo ip link set dev eth0 down
@@ -269,6 +268,20 @@ $ mv /home/user/<oldname> /home/user/<newname>
 $ :> foo.txt
 # Empty the contents of a file
 
+// mounting an USB Drive
+1. Find what the drive is called
+
+sudo fdisk -l
+
+2. Create a mount point
+
+Create a new directory in /media so you can mount the drive onto the filesystem:
+
+sudo  mkdir /media/usb
+
+3. Mount!
+
+sudo mount /dev/sdb1 /media/usb
 
 
 // search & display
@@ -415,10 +428,15 @@ echo -e  "hello\nthis is a test"
 echo "$DIRPATH"
 set 
 # shows all enviroment variables
-$ $(cat file) == $(< file)
+$  $(cat file) 
+# ähnlich wie $(< file) : $ zum ausführen
 
 $ echo "128.83.155.1 pluto.cns.utexas.edu" >> /etc/hosts		
 # fast way to write into file
+$ cat >> <file.txt> <<EOF
+FooText
+EOF
+
 -- stdin 0 stdout 1 stderr 2
 $ cmd > file 													
 # Redirect the standard output (stdout) of cmd to a File.
