@@ -79,7 +79,8 @@ $ sudo rm -r /home/username
 
 $ getent passwd
 # show  users 
-
+$ /etc/group
+# list all unix groups
 // Navigation
 -------------
 
@@ -129,6 +130,8 @@ $ top
 $pstree
 # tree of active processes
 
+$ unzip <file.zip> -d <destination_folder>
+
 // Network
 ----------
 $ ip -a
@@ -137,7 +140,7 @@ $ sudo ip link set dev eth0 down
 # deaktive interface eth0
 $ sudo dhclient eth0
 # run eth0 with a dynamic ip bzw dhcp
-$ sudo ip link set dev eth0 up
+[C$ sudo ip link set dev eth0 up
 # activate interface eth0
 $ ip a add {ip_addr/mask} dev {interface}
 # Assigns the IP address to the interface
@@ -149,6 +152,12 @@ $ ip a show eth0
 # Only show eth0 interface 
 ### these these changes will not survive a reboot, since the information is not stored anyhwere
 ### To configure a interface permanently you'll need to edit the interfaces file, /etc/network/interfaces.
+cat /sys/class/net/enp9s0/operstate
+# show network adapter status
+
+$ iw dev
+# show wlan interfaces
+
 $ sudo vi /etc/network/interfaces
 {
 ## To configure a dynamic IP address
@@ -175,6 +184,18 @@ domain example.com
 nameserver <dns server ip>
 }
 
+$ nmcli dev status
+# check if Network Manager is managing any network interfaces
+
+$ sudo systemctl stop NetworkManager.service
+$ sudo systemctl disable NetworkManager.service 
+# disable Network Manager (Linux Desktop)
+
+$ nmblookup -S WORKGROUP 
+# lists available smb shares on a network
+$ smbclient -L <server> -A <credentials-file>
+# list all smb available on a server
+
 $ whois <domain>           
 # gets whois information for domain
 $ dig <domain>             
@@ -185,6 +206,8 @@ $ nslookup <domain>
 # gets DNS information for domain + used dns server to for lookup
 $ wget <file> 
 # downloads file
+$ route -n
+# find gateway ip
 $ ss
 #
 $ netstat
@@ -214,6 +237,10 @@ $ lastlog
 # To see when did someone last log in to the system
 $ lspci 
 # lists info about PCI  devices
+$ lsusb
+# lists info about USB devices
+$ inxi -Fxz
+# System info
 // logging
 ----------
 $ less +F /var/log/messages
