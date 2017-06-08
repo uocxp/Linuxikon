@@ -241,6 +241,17 @@ $ lsusb
 # lists info about USB devices
 $ inxi -Fxz
 # System info
+
+$ systemd-analyze blame
+# show processes on startup
+
+$ systemd-analyze critical-chain <service>
+# show subs of a service
+
+$ service --status-all
+# show status of all services
+
+
 // logging
 ----------
 $ less +F /var/log/messages
@@ -267,7 +278,8 @@ $ fdisk -l
 # list disks
 $ df
 # shows disk usage 
-
+$ tree  /dev/disk/by-label/
+# show label and name of mounted partitions
 // manipulate
 -------------
 $ touch "new file"
@@ -310,6 +322,8 @@ sudo  mkdir /media/usb
 
 sudo mount /dev/sdb1 /media/usb
 
+// mounting an smb drive
+sudo mount -v -t cifs //<smb_drive_path> /media/<any_mount_name>/ -o credentials=<credentials_file_path>
 
 // search & display
 -------------------
@@ -319,6 +333,11 @@ $ grep
 # serach for text in multiple Files can be pipelined with other commands
 $ find 
 # search for Files (subtree)
+$ find . -iname "*filename*"
+# find recursive case insensitive
+$ sudo find / -name .DS_Store -delete
+$ sudo find / -name ".DS_Store"  -exec rm {} \;
+# find and delete
 $ locate
 # search in locate datenbank
 $ more
@@ -331,7 +350,9 @@ $ cat
 $ apt-cache search "keyword"
 # search for a package in Repo
 $ dpkg -l
-# List all packages	
+# List all packages
+$ dpkg -L <package>
+# show where package files installed	
 $ ls -i
 # shows info. expl: inode hardlink  
 
@@ -496,6 +517,8 @@ $ grep "[\]]" file.txt
 # searches for lines that contain ']' character
 $ grep -i "foo" file.txt
 # ignor case foo or Foo
+$ grep -- -<String>
+# searches for a String that starts with '-'
 
 
 
