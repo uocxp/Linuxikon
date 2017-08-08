@@ -19,7 +19,7 @@
   - fastest way to copy public key is using mc -> Right -> Shell link 
   - create first a user on the other server since remoting using root-user ist not possible  
 or
-$ ssh-copy-id -i <id_rsa.pub> user@host 
+$ ssh-copy-id -f -i <id_rsa.pub> user@host 
 # public key must bi located in "id_rsa.pub"
 # adds your ssh key to host for user to enable a keyed or passwordless login
 $ grep <name> authorized_keys > id_rsa.pub			
@@ -224,6 +224,9 @@ $ arp
  - ifconfig -a # list all the adapter
  - look which on is the ethernet one and config the interface file with correspondingly
  !
+
+$ sudo nmap -sL 192.168.0.*
+# search network for devices
  
 // System Info
 --------------
@@ -324,6 +327,10 @@ sudo mount /dev/sdb1 /media/usb
 
 // mounting an smb drive
 sudo mount -v -t cifs //<smb_drive_path> /media/<any_mount_name>/ -o credentials=<credentials_file_path>
+
+// unmount busy smb drive
+umount -l /PATH/OF/BUSY-DEVICE
+umount -f /PATH/OF/BUSY-NFS(NETWORK-FILE-SYSTEM)
 
 // search & display
 -------------------
