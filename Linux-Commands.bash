@@ -129,7 +129,9 @@ $ top
 # displays your currently active processes
 $pstree
 # tree of active processes
-
+$ export PATH=</my/path/>:$PATH
+# add this line to .bashrc to add a path to $PATH variable inorder
+# to execute scipts globally 
 $ unzip <file.zip> -d <destination_folder>
 
 // Network
