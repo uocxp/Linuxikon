@@ -55,6 +55,9 @@ $ /bin/rm
 $ . ~/.bashrc um bashrc zu reloaden
 
 // User Management
+------------------
+
+
 $ whoami
 # tells which user 
 $ nano /etc/sudoers
@@ -153,7 +156,7 @@ $ sudo ip route add default via <ip>
 $ ip a show eth0
 # Only show eth0 interface 
 ### these these changes will not survive a reboot, since the information is not stored anyhwere
-### To configure a interface permanently you'll need to edit the interfaces file, /etc/network/interfaces.
+### To configure a interface permanently you will need to edit the interfaces file, /etc/network/interfaces.
 cat /sys/class/net/enp9s0/operstate
 # show network adapter status
 
@@ -232,7 +235,7 @@ $ sudo nmap -sL 192.168.0.*
  
 // System Info
 --------------
-$ who
+$ who -H
 # To see who is currently logged in to the Linux server,
 $ last
 # The last command tells us the login history of users
@@ -275,8 +278,8 @@ $cat /etc/rsyslog.conf
 # appropriate log file in the /var/log directory. It can also forward
 # log messages to another Linux server.
 
-//Disk
-------
+// Disk
+-------
 $ lsblk
 # list blocks
 $ fdisk -l
@@ -285,7 +288,7 @@ $ df
 # shows disk usage 
 $ tree  /dev/disk/by-label/
 # show label and name of mounted partitions
-// manipulate
+// Manipulate
 -------------
 $ touch "new file"
 # creates empty file
@@ -364,7 +367,10 @@ $ dpkg -L <package>
 # show where package files installed	
 $ ls -i
 # shows info. expl: inode hardlink  
-
+$ readlink -f <file>
+# shows the path of a file
+$ find | grep -i <String>
+# search for a file within a folder
 
 // Packages
 -----------
@@ -422,6 +428,7 @@ $chown
 # edit file owner
 // Others
 ---------
+---------
 $ shutdown now
 # shutdown instantly
 $ shutdown -h +10			
@@ -431,6 +438,12 @@ $ service --status-all
 $ service "ssh" restart		
 # restarts service "ssh"
 
+
+// GUI
+---------
+$ ~/.local/share/applications 
+$ /usr/share/applications
+# remove links of apps from the list of open with 
 
 --------- Fedora -------------
 $hostnamectrl status				
@@ -444,7 +457,9 @@ $ systemctl start sshd
 # start openssh server
 $ systemctl status "service"		
 # checks if service on
+
 //logs
+------
 $ journalctl -r /usr/sbin/sshd 
 $ journalctl -e /var/log			
 # ssh logs 
@@ -528,6 +543,6 @@ $ grep -i "foo" file.txt
 # ignor case foo or Foo
 $ grep -- -<String>
 # searches for a String that starts with '-'
-
-
+$ grep -rni <String>
+# search for a string within a Folder
 
