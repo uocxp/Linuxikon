@@ -24,12 +24,8 @@ $ ssh-copy-id -f -i <id_rsa.pub> <user>@<host>
 $ ssh-keygen -f "/home/ali/.ssh/known_hosts" -R <ipOfHost>
 # remove the hash of Host key from known_hosts
 
-- ssh <server> -v
-# verbose output
-# je mehr v man eingibt desto mehr info rauskommt
-
 # new fresh debian server
-  {
+{
   - if .ssh folder not found -> ssh localhost
   - fastest way to copy public key is using mc -> Right -> Shell link
   - create first a user on the other server since remoting using root-user ist not possible
@@ -39,7 +35,6 @@ $ ssh-copy-id -f -i <id_rsa.pub> user@host
 # adds your ssh key to host for user to enable a keyed or passwordless login
 $ grep <name> authorized_keys > id_rsa.pub
 # exports  the lines with <name> into <id_rsa.pub>
-
 }
 
 
@@ -97,9 +92,9 @@ $ getent passwd
 # show  users
 $ /etc/group
 # list all unix groups
+
 ## Navigation
 -------------
-
 $ ctrl+shift+t
 # open new Tab in Terminal
 $ pwd
@@ -120,7 +115,6 @@ $ cp <path/To/My File> /media/Dir/.
 $ cp myfile myfile-old
 # ==
 $ cp myfile{,-old}
-
 $ mv "path/To/My File" /media/Dir/.
 # Copy/cut single file.
 $ cp -r "path/To/My Dir" /media/Dir/.
@@ -162,7 +156,7 @@ $ sudo ip link set dev eth0 down
 # deaktive interface eth0
 $ sudo dhclient eth0
 # run eth0 with a dynamic ip bzw dhcp
-[C$ sudo ip link set dev eth0 up
+$ sudo ip link set dev eth0 up
 # activate interface eth0
 $ ip a add {ip_addr/mask} dev {interface}
 # Assigns the IP address to the interface
@@ -176,23 +170,21 @@ $ ip a show eth0
 ### To configure a interface permanently you will need to edit the interfaces file, /etc/network/interfaces.
 cat /sys/class/net/enp9s0/operstate
 # show network adapter status
-
 $ iw dev
 # show wlan interfaces
-
 $ sudo vi /etc/network/interfaces
 {
-## To configure a dynamic IP address
+### To configure a dynamic IP address
 auto eth0
 iface eth0 inet dhcp
 
-## Or configure a static IP
+### To configure a static IP
 auto eth0
 iface eth0 inet static
-  address 192.168.1.14
-  gateway 192.168.0.1
-  netmask 255.255.255.0
-  dns-nameservers 192.168.0.1
+  address <192.168.1.14>
+  gateway <192.168.0.1>
+  netmask <255.255.255.0>
+  dns-nameservers <192.168.0.1>
 
 For these settings to take effect you need to restart your networking services.
 
@@ -255,11 +247,9 @@ $ netstat -tulpn
 ! sometime in a fresh installed system the default eth0 can be renames in another name
  - ifconfig -a # list all the adapter
  - look which on is the ethernet one and config the interface file with correspondingly
- !
 
 $ sudo nmap -sL 192.168.0.*
 # search network for devices
-
 ## Remote
 $ screen -S <sessionName>
 # create a screen session
@@ -287,16 +277,12 @@ $ lsusb
 # lists info about USB devices
 $ inxi -Fxz
 # System info
-
 $ systemd-analyze blame
 # show processes on startup
-
 $ systemd-analyze critical-chain <service>
 # show subs of a service
-
 $ service --status-all
 # show status of all services
-
 
 ## logging
 ----------
