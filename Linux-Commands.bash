@@ -152,22 +152,24 @@ $ unzip <file.zip> -d <destination_folder>
 ----------
 $ ip -a
 # show all ip address associated on on all network interfaces
-$ sudo ip link set dev eth0 down
+$ sudo ip link set <eth0> down
 # deaktive interface eth0
-$ sudo dhclient eth0
+$ sudo dhclient <eth0>
 # run eth0 with a dynamic ip bzw dhcp
-$ sudo ip link set dev eth0 up
+$ sudo ip link <dev> eth0 up
 # activate interface eth0
-$ ip a add {ip_addr/mask} dev {interface}
+$ ip address add <ip_addr/mask> dev <interface>
 # Assigns the IP address to the interface
 ## ip a add 192.168.1.200/24 dev eth0
 $ sudo ip route add default via <ip>
 # assigns default gateway
 ## sudo ip route add default via 192.168.1.1
-$ ip a show eth0
+$ ip a show <eth0>
 # Only show eth0 interface
 ### these these changes will not survive a reboot, since the information is not stored anyhwere
 ### To configure a interface permanently you will need to edit the interfaces file, /etc/network/interfaces.
+$ netplan apply
+# appy /etc/netplan/*.yaml network configuration file
 cat /sys/class/net/enp9s0/operstate
 # show network adapter status
 $ iw dev
@@ -243,6 +245,8 @@ $ lsof
 # ps + netstat
 $ netstat -tulpn 
 # list opens ports
+$ ps -Flww -p <pid>
+# get information about a pid
 
 ! sometime in a fresh installed system the default eth0 can be renames in another name
  - ifconfig -a # list all the adapter
@@ -250,6 +254,8 @@ $ netstat -tulpn
 
 $ sudo nmap -sL 192.168.0.*
 # search network for devices
+
+
 ## Remote
 $ screen -S <sessionName>
 # create a screen session
@@ -259,8 +265,10 @@ $ screen -r <sessionName>
 # to reattach
 $ echo $STY
 # check if in screen session
-
-
+$ ssh -L <localport>:<host>:<hostport> user@host
+$ Specifies that connections to the given TCP port or Unix socket on the local client host are to be forwarded to the given host and port, or Unix socket, on the remote side.
+$ ssh -R <localport>:<host>:<hostport> user@host
+$ Specifies that connections to the given TCP port or Unix socket on the remote (server) host are to be forwarded to the local side. 
 ## System Info
 --------------
 $ who -H
@@ -318,7 +326,24 @@ $ tree  /dev/disk/by-label/
 # show label and name of mounted partitions
 $ du -sh /*
 # get size of each folder in .
-
+$ lshw -c disk
+# get info about disks
+$ parted /sdx
+    mklabel gpt
+    mkpart
+        <name>
+        <file system type : ext4 for expl>
+        <start: 0%>
+        <end: 100%>
+        quit
+    // > help <command>
+# create one partition of whole disk
+$  sudo mkfs.ext4 </dev/sdb1>
+# to format a partition
+mount </dev/sdx1> /mnt/<location>
+# mount the partition
+$ sudo chown <user>.<group> /mnt/<location>
+# change owner 
 ## Flash to USB
 ---------------
 $ lsblk
@@ -601,6 +626,8 @@ $ mkdir folder;cd folder
 # ; run next command regardless of whether or not the first one succeeds.
 $ cmd 1 || cmd2
 # causes the next command to run if the previous command failed
+$ cmd ||:
+# if cmd fails then true
 $ set -e
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 export DIRPATH = /home/dir
@@ -650,7 +677,7 @@ $ rm -f !(survivior.txt)
 ## https://unix.stackexchange.com/questions/442692/is-a-subshell
 There are several other constructs that create a subshell. I think this is the full list for bash:
 * Subshell for grouping: 
-        ( … ) does nothing but create a subshell and wait for it to terminate). 
+        ( … )  creates a subshell and wait for it to terminate. 
         Contrast with { … } which groups commands purely for syntactic purposes and does not create a subshell.
 * Background: 
         … & creates a subshell and does not wait for it to terminate.
@@ -786,6 +813,14 @@ $ cmd 2> file
 # Redirect the standard error (stderr) of cmd to a File. 2 is the default fd for stderr.
 $ 3>&1
 # Create a new file descriptor 3 and point it to the file descriptor 1 (stdout)
+# '&' what comes next is a file descriptor, not a file (only for right hand side of >)
+$ 2>&1
+# redirect file descriptor 2 (stderr) to file descriptor 1 (stdout)
+$ tee 
+# read from standard input and write to standard output and files
+# expl: ./runprogram | tee program.log | grep Error 
+#       ./runprogram >> tee program.log | grep Error does not work
+
 
 # foo=1, boo=2
 $ echo "$fooboo"
