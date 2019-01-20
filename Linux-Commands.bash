@@ -164,9 +164,12 @@ $ ip address add <ip_addr/mask> dev <interface>
 $ sudo ip route add default via <ip>
 # assigns default gateway
 ## sudo ip route add default via 192.168.1.1
-$ ip a show <eth0>
+$ ip addr show <eth0>
 # Only show eth0 interface
-### these these changes will not survive a reboot, since the information is not stored anyhwere
+$ ip addr del <2001:1890:110e:1111::a245/64> dev <eth0>
+# delete an ipv6 address
+
+### these changes will not survive a reboot, since the information is not stored anyhwere
 ### To configure a interface permanently you will need to edit the interfaces file, /etc/network/interfaces.
 $ netplan apply
 # appy /etc/netplan/*.yaml network configuration file
@@ -514,6 +517,7 @@ $ chmod +x "file name"
 - http://www.user-archiv.de/chmod.html
 $chown
 # edit file owner
+
 ## Others
 ---------
 ---------
@@ -525,7 +529,8 @@ $ service --status-all
 # check status for multiple services
 $ service "ssh" restart
 # restarts service "ssh"
-
+$ openssl x509 -enddate -noout -in <cert>
+# show expiry date of a cert
 
 ## GUI
 ---------
@@ -566,6 +571,7 @@ $ resize2fs <logical volume path>
 $ lvcreate -L <size|5GB> -s -n  <snap_name> <logical volume path>
 #### restore a snapshot
 $ lvconvert --merge <logical volume path>
+
 ------- Fedora -------------
 $hostnamectrl status
 # info about client
