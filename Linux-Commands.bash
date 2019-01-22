@@ -616,8 +616,9 @@ $ hostnamectl set-hostname --static <hostname>		# set hostname
 # nmcli
 nmcli con show
 nmcli connection edit "connection name"
+nmcli> set ipv4.method manual
 nmcli> set ipv4.addresses <ip>/24
-nmcli> set ipv4.gateway <gatewa>
+nmcli> set ipv4.gateway <gateway>
 nmcli> set ipv4.dns <dns1>,<dns2>
 nmcli> set ipv4.dns-search <dom1>,<dom2>
 nmcli> save
